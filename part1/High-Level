@@ -1,0 +1,41 @@
+classDiagram
+direction TB
+
+package "Presentation Layer" {
+    class API {
+        <<Interface>>
+        +UserService
+        +PlaceService
+        +ReviewService
+        +AmenityService
+    }
+}
+
+package "Business Logic Layer" {
+    class Models {
+        +User
+        +Place
+        +Review
+        +Amenity
+    }
+    class HBnBFacade {
+        +createUser()
+        +createPlace()
+        +createReview()
+        +listPlaces()
+    }
+}
+
+package "Persistence Layer" {
+    class Repositories {
+        +UserRepository
+        +PlaceRepository
+        +ReviewRepository
+        +AmenityRepository
+        +DatabaseConnection
+    }
+}
+
+API --> HBnBFacade : calls
+HBnBFacade --> Repositories : queries
+
